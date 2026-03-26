@@ -29,4 +29,4 @@ If you are passionate about cybersecurity and want to learn hacking alongside a 
 
 ---
 
-**Would you like me to include a "Getting Started" section with instructions on how to deploy this to your own GitHub repository?**
+
