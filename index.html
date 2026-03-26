@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>April Roadmap | Cyber-Learning</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0c10;
+            --card-bg: #161b22;
+            --border-color: #30363d;
+            --text-main: #c9d1d9;
+            --text-dim: #8b949e;
+            --linux-accent: #5DCAA5;
+            --net-accent: #58a6ff;
+            --web-accent: #ff7b72;
+            --glow-strength: rgba(88, 166, 255, 0.15);
+        }
+
+        * { box-sizing: border-box; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container { max-width: 850px; width: 100%; }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-align: center;
+            letter-spacing: -0.02em;
+            background: linear-gradient(90deg, #58a6ff, #bc8cff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .week-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .week-card:nth-child(1) { animation-delay: 0.1s; }
+        .week-card:nth-child(2) { animation-delay: 0.2s; }
+        .week-card:nth-child(3) { animation-delay: 0.3s; }
+        .week-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .week-card:hover {
+            border-color: var(--net-accent);
+            box-shadow: 0 0 20px var(--glow-strength);
+            transform: scale(1.01);
+        }
+
+        .week-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.75rem;
+        }
+
+        .week-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .week-title { font-size: 16px; font-weight: 500; color: #ffffff; }
+        .week-date { font-size: 12px; color: var(--text-dim); margin-left: auto; }
+
+        .track-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 12px;
+        }
+
+        .track-box {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 14px;
+            border: 1px solid transparent;
+            position: relative;
+        }
+
+        .track-box:hover { background: rgba(255, 255, 255, 0.06); }
+
+        .ep-pill {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 6px;
+            background: rgba(88, 166, 255, 0.15);
+            color: var(--net-accent);
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        .track-label { font-size: 11px; font-weight: 600; color: var(--text-dim); text-transform: uppercase; margin-bottom: 4px; }
+        .track-title { font-size: 14px; font-weight: 600; color: #f0f6fc; margin-bottom: 4px; }
+        .track-desc { font-size: 12.5px; color: var(--text-dim); line-height: 1.4; }
+
+        /* Specific Track Accents */
+        .linux-accent-line { border-left: 3px solid var(--linux-accent); }
+        .net-accent-line { border-left: 3px solid var(--net-accent); }
+        .web-accent-line { border-left: 3px solid var(--web-accent); }
+
+        .skip-tag {
+            font-size: 10px;
+            color: #f85149;
+            background: rgba(248, 81, 73, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-top: 8px;
+            display: inline-block;
+        }
+
+        /* Stats Footer */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .stat-value { font-family: 'JetBrains Mono', monospace; font-size: 20px; font-weight: 600; color: var(--net-accent); }
+        .stat-label { font-size: 10px; color: var(--text-dim); text-transform: uppercase; margin-top: 4px; }
+
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .week-header { flex-wrap: wrap; }
+            .week-date { width: 100%; margin-top: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>April Study Protocol</h1>
+
+    <div class="week-card">
+        <div class="week-header">
+            <span class="week-badge" style="background: rgba(93, 202, 165, 0.15); color: var(--linux-accent);">Week 01</span>
+            <span class="week-title">Internet Fundamentals & Addressing</span>
+            <span class="week-date">Apr 1 – 7</span>
+        </div>
+        <div class="track-grid">
+            <div class="track-box linux-accent-line">
+                <div class="track-label">Advanced Linux</div>
+                <div class="track-title">First Class</div>
+                <div class="track-desc">Initial environment setup and scheduling.</div>
+            </div>
+            <div class="track-box net-accent-line">
+                <div class="ep-pill">EP 01 — 13 LECTURES</div>
+                <div class="track-label">CS144 #1–13</div>
+                <div class="track-title">Internet & IP Core</div>
+                <div class="track-desc">IP service, packet switching, layering, encapsulation, IPv4, ARP.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="week-card">
+        <div class="week-header">
+            <span class="week-badge" style="background: rgba(88, 166, 255, 0.15); color: var(--net-accent);">Week 02</span>
+            <span class="week-title">Transport Layer & Congestion</span>
+            <span class="week-date">Apr 8 – 14</span>
+        </div>
+        <div class="track-grid">
+            <div class="track-box linux-accent-line">
+                <div class="track-label">Advanced Linux</div>
+                <div class="track-title">Second Class</div>
+                <div class="track-desc">System calls and kernel interactions.</div>
+            </div>
+            <div class="track-box net-accent-line">
+                <div class="ep-pill">EP 02 — 14 LECTURES</div>
+                <div class="track-label">CS144 #14–40</div>
+                <div class="track-title">Reliability & TCP</div>
+                <div class="track-desc">Sliding window, connection setup, AIMD, congestion control.</div>
+                <div class="skip-tag">Trimmed: FSM, Stop&Wait, and Recaps skipped</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="week-card">
+        <div class="week-header">
+            <span class="week-badge" style="background: rgba(255, 123, 114, 0.15); color: var(--web-accent);">Week 03</span>
+            <span class="week-title">Routing & Web Hacking Kickoff</span>
+            <span class="week-date">Apr 15 – 21</span>
+        </div>
+        <div class="track-grid">
+            <div class="track-box net-accent-line">
+                <div class="ep-pill">EP 03 — 13 LECTURES</div>
+                <div class="track-label">CS144 #41–61</div>
+                <div class="track-title">Routing Essentials</div>
+                <div class="track-desc">NAT, DNS, DHCP, Dijkstra, BGP, IPv6.</div>
+            </div>
+            <div class="track-box web-accent-line">
+                <div class="track-label">Web Hacking</div>
+                <div class="track-title">Rana Khalil Intro</div>
+                <div class="track-desc">SQL Injection and Reflected XSS. First exposure focus.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="week-card">
+        <div class="week-header">
+            <span class="week-badge" style="background: rgba(255, 255, 255, 0.1); color: #fff;">Week 04</span>
+            <span class="week-title">Security & Deep Web Exploits</span>
+            <span class="week-date">Apr 22 – 30</span>
+        </div>
+        <div class="track-grid" style="grid-template-columns: 1fr;">
+            <div class="track-box net-accent-line">
+                <div class="ep-pill">EP 04 — 10 LECTURES</div>
+                <div class="track-label">CS144 #76–90</div>
+                <div class="track-title">Network Security Core</div>
+                <div class="track-desc">DoS, Crypto, Certificates, TLS.</div>
+            </div>
+            <div class="track-box web-accent-line">
+                <div class="track-label">Web Hacking Deep-Dive</div>
+                <div class="track-title">Advanced Vulnerabilities</div>
+                <div class="track-desc">CSRF, Auth flaws, SSRF, Command Injection.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-value">50</div>
+            <div class="stat-label">Lectures</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">47</div>
+            <div class="stat-label">Skipped</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">~13</div>
+            <div class="stat-label">Weekly Avg</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">3</div>
+            <div class="stat-label">Parallel Tracks</div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
